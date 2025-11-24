@@ -1,0 +1,6 @@
+build/
+cmake-cache/
+*.xml
+*.pcap
+.vscode/
+.DS_Store

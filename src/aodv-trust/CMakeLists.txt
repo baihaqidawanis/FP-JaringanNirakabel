@@ -1,0 +1,25 @@
+build_lib(
+    LIBNAME aodv-trust
+    SOURCE_FILES
+        helper/aodv-trust-helper.cc
+        model/aodv-trust-routing-protocol.cc
+        model/aodv-neighbor.cc
+        model/aodv-rqueue.cc
+        model/aodv-packet.cc
+        model/aodv-rtable.cc
+        model/aodv-dpd.cc
+        model/aodv-id-cache.cc
+    HEADER_FILES
+        helper/aodv-trust-helper.h
+        model/aodv-trust-routing-protocol.h
+        model/aodv-neighbor.h
+        model/aodv-rqueue.h
+        model/aodv-packet.h
+        model/aodv-rtable.h
+        model/aodv-dpd.h
+        model/aodv-id-cache.h
+    LIBRARIES_TO_LINK
+        ${libinternet}
+        ${libwifi}
+        ${libnetwork}
+)
