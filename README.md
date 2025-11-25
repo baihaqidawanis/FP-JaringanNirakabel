@@ -1,3 +1,144 @@
+
+# 👨‍💻 Team Members — Final Project Wireless Network
+- Muhammad Baihaqi Dawanis - 5025231177
+- Abimanyu Dananedra Andarfebano - 5025231182
+
+# 🔐 AODV-Trust Protocol  
+Secure Routing for Mobile Ad-hoc Networks (MANET)
+
+Modifikasi protokol **AODV** pada simulator **NS-3** dengan mekanisme **Trust Management** untuk meningkatkan keamanan terhadap *blackhole attack* dan perilaku node berbahaya.  
+
+Repositori ini menunjukkan pendekatan routing aman menggunakan reputasi dinamis, filtering node jahat, serta mode perbandingan antara protokol **AODV standar** dan versi **AODV-Trust**.
+
+---
+
+## 🚀 Key Features
+
+### 🔒 Security Mechanism
+- **Trust Table System**
+  - Setiap node memiliki nilai reputasi **0.0–1.0** berdasarkan perilaku forwarding paket.
+- **Malicious Node Filtering**
+  - Node dengan nilai trust < **0.4** otomatis di-*block*.
+- **Reward & Penalty Logic**
+  - Trust naik saat forwarding sukses  
+  - Trust turun signifikan saat loss terdeteksi
+
+---
+
+### 🏛 System Architecture
+| Feature | Status |
+|--------|--------|
+| Dual Operation Mode | ✔ Secure (AODV-Trust) & Standard AODV |
+| Real-time Logging | ✔ Trust updates, PDR, alerts |
+| Modular Helper Class | ✔ Install to any node set |
+
+---
+
+### 📊 Visualization & Analysis
+- **NetAnim XML Integration**
+- **Flow Monitor**: menghitung TX/RX packets, throughput, dan Packet Delivery Ratio (PDR)
+
+---
+
+## 📂 Project Structure (Files of Interest)
+
+| File | Deskripsi |
+|------|-----------|
+| `src/aodv-trust/model/aodv-trust-routing-protocol.cc` | Implementasi inti trust & filtering |
+| `src/aodv-trust/model/aodv-trust-routing-protocol.h` | Struktur Trust Table & parameter |
+| `src/aodv-trust/helper/aodv-trust-helper.cc` | Instalasi protokol pada node |
+| `scratch/aodv-trust-sim.cc` | Skrip simulasi utama |
+
+---
+
+## 🛠️ Requirements
+
+| Komponen | Versi |
+|----------|--------|
+| OS | Ubuntu 20.04 / 22.04 / WSL2 |
+| Compiler | GCC / G++ sesuai NS-3 |
+| NS-3 Version | **3.41** |
+| Build System | Waf / CMake |
+
+---
+
+## 📦 Installation & Setup
+
+### 1️⃣ Install Dependencies
+
+```
+sudo apt update
+sudo apt install build-essential python3-dev cmake git qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools -y
+```
+### 2️⃣ Clone Repository
+```git clone <LINK_REPOSITORY_GITHUB_ANDA>
+cd ns3-aodv-trust
+```
+
+### 🏗 Build Instructions
+Bersihkan Build lama
+```
+./ns3 clean
+```
+Configure 
+```
+./ns3 configure --enable-examples --disable-tests
+```
+compile 
+```
+./ns3 build
+```
+
+## ▶️ How to Run Simulations
+### 1. Secure Mode (AODV-Trust)
+```
+./ns3 run "scratch/aodv-trust-sim --useTrust=true"
+```
+Expected Output:
+```
+===============================================
+>>> RUNNING MODE: AODV-TRUST (SECURE)       <<<
+>>> Mekanisme filtering node jahat: AKTIF   <<<
+===============================================
+```
+### 2. Standard Mode (Baseline AODV)
+```
+./ns3 run "scratch/aodv-trust-sim --useTrust=false"
+```
+Expected output
+```
+===============================================
+>>> RUNNING MODE: AODV STANDARD (INSECURE)  <<<
+>>> Mekanisme filtering node jahat: MATI    <<<
+===============================================
+```
+
+### 📽 NetAnim Visualization
+XML trace file otomatis dibuat setelah simulasi:
+| Mode | file |
+|----------|--------|
+| Secure| anim-trust.xml|
+| Standard| anim-std.xml |
+
+---
+### Cara buka di NetAnim:
+- Buka aplikasi NetAnim
+- Klik Open
+- Pilih file XML
+- Tekan Play
+
+### Legend
+Legend:
+
+🟢 Source Node
+
+🔴 Destination Node
+
+🔵 Paket/Link Transmission
+
+
+
+
 # The Network Simulator, Version 3
 
 [![codecov](https://codecov.io/gh/nsnam/ns-3-dev-git/branch/master/graph/badge.svg)](https://codecov.io/gh/nsnam/ns-3-dev-git/branch/master/)
